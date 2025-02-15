@@ -3,23 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:12:58 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/12 13:02:22 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/02/15 15:48:45 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **av)
+int	main(void)
 {
-	if (argc != 5)
-	{
-		ft_printf("Error\n");
-		return (0);
-	}
-	else
-		error_checking(av);
+	int id = fork();
+	ft_printf("hello world from id: %d \n", id);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:12:58 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/16 15:08:26 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/02/16 15:38:23 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,36 +56,78 @@
 // 	return (0);
 // }
 
-int main(void)
+// int main(void)
+// {
+// 	int id1 = fork();
+// 	int id2 = fork();
+// 	if (id1 == 0)
+// 	{
+// 		if (id2 == 0)
+// 		{
+// 			ft_printf("We are process y \n");
+// 		}
+// 		else 
+// 		{
+// 			ft_printf("We are process x \n");
+// 		}
+// 	}
+// 	else 
+// 	{
+// 		if (id2 == 0)
+// 		{
+// 			ft_printf("We are process z \n");
+// 		}
+// 		else 
+// 		{
+// 			wait(&id1);
+// 			ft_printf("we are the parent process \n");
+// 		}
+// 	}
+// 	while (wait(NULL) != -1 || errno != ECHILD)
+// 	{
+// 		ft_printf("waited for child to finish \n");
+// 	}
+// 	return (0);
+// }
+
+int	main(void)
 {
-	int id1 = fork();
-	int id2 = fork();
-	if (id1 == 0)
+	int fd[2];
+	// fd[0] is the read end
+	// fd[1] is the write end
+	if (pipe(fd) == -1)
 	{
-		if (id2 == 0)
+		ft_printf("Error \n");
+		return (1);		
+	}
+	int id = fork();
+	if (id == 0)
+	{
+		close (fd[0]);
+		int x;
+		ft_printf("input : ");
+		scanf("%d", &x);
+		if (write(fd[1], &x, sizeof(int)) == -1)
 		{
-			ft_printf("We are process y \n");
+			ft_printf("Error \n");
+			return (2);			
 		}
-		else 
-		{
-			ft_printf("We are process x \n");
-		}
+		close(fd[1]);
 	}
 	else 
 	{
-		if (id2 == 0)
+		close (fd[1]);
+		int y;
+		if (read(fd[0], &y, sizeof(int)) == -1)
 		{
-			ft_printf("We are process z \n");
+			ft_printf("Error \n");
+			return (3);			
 		}
-		else 
-		{
-			wait(&id1);
-			ft_printf("we are the parent process \n");
-		}
-	}
-	while (wait(NULL) != -1 || errno != ECHILD)
-	{
-		ft_printf("waited for child to finish \n");
+		close(fd[0]);
+		y -= 42;
+		ft_printf("Got from child process : %d \n", y);		
 	}
 	return (0);
 }
+
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:03:25 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/12 13:00:57 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/02/15 22:33:18 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <string.h>
 # include <stdint.h>
 # include <limits.h>
+# include <stdio.h>
 # include <stdarg.h>
 
 void	ft_putchar_fd(char c, int fd, int *count);

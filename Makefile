@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+         #
+#    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 11:38:45 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/02/15 15:38:17 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/02/17 11:04:58 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = cc
-FLAGS = -Wall -Wextra -Werror
+# 	
 SOURCES = main.c
 OBJECTS = $(SOURCES:.c=.o)
 HEADERS = pipex.h libft/libft.h
@@ -39,4 +39,7 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+run: $(NAME)
+	./$(NAME)
+
+.PHONY: all clean fclean re run

@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
+#    By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 11:38:45 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/02/17 11:04:58 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/02/20 10:37:55 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = cc
-# 	
-SOURCES = main.c
+FLAGS = -g3
+SOURCES = tutorial.c
 OBJECTS = $(SOURCES:.c=.o)
 HEADERS = pipex.h libft/libft.h
 LIBFT = libft/libft.a

@@ -1,0 +1,15 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "pipex debug",
+			"program": "${workspaceFolder}/pipex",
+			"args": [ 
+				 
+				
+			],
+		  }
+	]  
+}

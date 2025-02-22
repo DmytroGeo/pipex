@@ -6,7 +6,7 @@
 #    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 12:03:28 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/02/22 14:40:48 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/02/22 16:24:25 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,9 @@ SOURCES = ft_memcpy.c \
 			ft_putuns_fd.c \
 			ft_split.c \
 			ft_strjoin.c \
-			ft_strlen.c
+			ft_strlen.c \
+			ft_strncmp.c \
+			ft_strnstr.c 
 
 OBJECTS = $(SOURCES:.c=.o)
 

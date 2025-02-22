@@ -3,22 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+         #
+#    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 11:38:45 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/02/20 10:37:55 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/02/21 13:44:38 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = cc
-FLAGS = -g3
-SOURCES = tutorial.c
+FLAGS = -Wall -Wextra -Werror
+SOURCES = main.c \
+			error_checking.c
+			
 OBJECTS = $(SOURCES:.c=.o)
-HEADERS = pipex.h libft/libft.h
 LIBFT = libft/libft.a
 
-%.o: %.c $(HEADERS)
+%.o: %.c
 		$(CC) $(FLAGS) -c $< -o $@
 
 all: $(NAME)
@@ -26,7 +27,7 @@ all: $(NAME)
 $(LIBFT): 
 		$(MAKE) -C libft
 
-$(NAME): $(LIBFT) $(OBJECTS) $(HEADERS)
+$(NAME): $(LIBFT) $(OBJECTS)
 		$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(LIBFT)
 
 clean:
@@ -39,7 +40,7 @@ fclean: clean
 
 re: fclean all
 
-run: $(NAME)
-	./$(NAME)
+# run: $(NAME)
+# 	./$(NAME)
 
 .PHONY: all clean fclean re run

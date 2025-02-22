@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tutorial.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:12:58 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/19 16:03:34 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/02/20 11:39:05 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -769,56 +769,56 @@ void	close_final(int fd[][2], int len)
 	return ;	
 }
 
-// int main(int ac, char **av)
-// {
-// 	if (ac < 3)
-// 		return 0;
-// 	int m = atoi(av[1]);
-// 	int n = atoi(av[2]);
-// 	int fd[n + 1][2];
-// 	int id[n];
-// 	int i = 0;
-// 	while (i < n + 1)
-// 	{
-// 		if (pipe(fd[i]) < 0)
-// 			return 1;
-// 		i++;
-// 	}
-// 	i = 0;
-// 	while (i < n)
-// 	{
-// 		id[i] = fork();
-//		if (id[i] < 0)
-//			return 9;
-// 		if (id[i] == 0)
-// 		{
-// 			close_others(fd, n + 1, i);
-// 			int y;
-// 			if (read(fd[i][0], &y, sizeof(int)) < 0)
-// 				return (3);
-// 			y += m;
-// 			if (write(fd[i + 1][1], &y, sizeof(int)) < 0)
-// 				return (4);
-// 			close(fd[i][0]);
-// 			close(fd[i + 1][1]);
-// 			return (0);
-// 		}
-// 		i++;
-// 	}
-// 	close_final(fd, n + 1);
-// 	int x = 0;
-// 	if (write(fd[0][1], &x, sizeof(int)) < 0)
-// 		return (5);
-// 	if (read(fd[n][0], &x, sizeof(int)) < 0)
-// 		return (6);
-// 	close(fd[0][1]);
-// 	close(fd[n][0]);
-// 	ft_printf("Answer = %d \n", x);
-// 	i = 0;
-// 	while (i < n)
-// 	{
-// 		waitpid(id[i], NULL, 0);
-// 		i++;
-// 	}
-// 	return (0);
-// }
+int main(int ac, char **av)
+{
+	if (ac < 3)
+		return 0;
+	int m = atoi(av[1]);
+	int n = atoi(av[2]);
+	int fd[n + 1][2];
+	int id[n];
+	int i = 0;
+	while (i < n + 1)
+	{
+		if (pipe(fd[i]) < 0)
+			return 1;
+		i++;
+	}
+	i = 0;
+	while (i < n)
+	{
+		id[i] = fork();
+		if (id[i] < 0)
+			return 9;
+		if (id[i] == 0)
+		{
+			close_others(fd, n + 1, i);
+			int y;
+			if (read(fd[i][0], &y, sizeof(int)) < 0)
+				return (3);
+			y += m;
+			if (write(fd[i + 1][1], &y, sizeof(int)) < 0)
+				return (4);
+			close(fd[i][0]);
+			close(fd[i + 1][1]);
+			return (0);
+		}
+		i++;
+	}
+	close_final(fd, n + 1);
+	int x = 0;
+	if (write(fd[0][1], &x, sizeof(int)) < 0)
+		return (5);
+	if (read(fd[n][0], &x, sizeof(int)) < 0)
+		return (6);
+	close(fd[0][1]);
+	close(fd[n][0]);
+	ft_printf("= %d \n", x);
+	i = 0;
+	while (i < n)
+	{
+		waitpid(id[i], NULL, 0);
+		i++;
+	}
+	return (0);
+}

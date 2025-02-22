@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:03:25 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/15 22:33:18 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/02/22 14:41:19 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ void	ft_putnbr_fd(int n, int fd, int *count);
 void	ft_putptr_fd(void *ptr, int fd, int *count);
 void	ft_putstr_fd(char *s, int fd, int *count);
 void	ft_putuns_fd(unsigned int n, int fd, int *count);
-
+void	*ft_memcpy(void *dest, const void *src, size_t n);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	**ft_split(char const *s, char c);
 int		ft_printf(const char *str, ...);
+size_t	ft_strlen(const char *s);
 
 #endif

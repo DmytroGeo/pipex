@@ -3,82 +3,120 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 12:30:47 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/22 21:36:05 by dgeorgiy         ###   ########.fr       */
+/*   Created: 2025/02/24 10:48:20 by dgeorgiy          #+#    #+#             */
+/*   Updated: 2025/02/24 12:46:36 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+# include "pipex.h"
 
-int main(int ac, char **av, char **envp)
+char **get_paths(int ac, char **av, char **envp)
 {
-	int fd[2];
-	if (pipe(fd) == -1)
-	{
-		perror("The pipe failed \n");
-		exit(EXIT_FAILURE);
-	}
-	if (ac < 2)
-	{
-		perror("Not enough parameters \n");
-		exit(EXIT_FAILURE);
-	}
-	if (av == NULL)
-	{
-		perror("Not a valid argument \n");
-		exit(EXIT_FAILURE);
-	}
-	int id = fork();
-	if (id < 0)
-	{
-		perror("The fork failed \n");
-		exit(EXIT_FAILURE);		
-	}
-	if (id == 0)
-	{
 		char **ptr = envp;
+        char **paths = malloc((ac - 1) * sizeof(char *));
 		while (!(ft_strnstr(*ptr, "PATH", ft_strlen(*ptr)) && **ptr == 'P'))
 			ptr++;
 		*ptr += 5;
 		char **array = ft_split(*ptr, ':'); // remember to free at some point
 		int flag = 0;
 		int i = 0;
-		char *temp;
-		char *str2;
-		while (flag == 0 && array[i])
-		{
-			temp = ft_strjoin(array[i], "/");			
-			str2 = ft_strjoin(temp, av[2]); // remember to free if we haven't found the right thing.
-			if (access(str2, F_OK) == 0)
-				flag = 1;
-			else
-			{
-				free(temp);
-				free(str2);
-				i++;				
-			}
+        int k = 0;
+		char *temp1;
+        char *temp2;
+        while (k < ac - 1)
+        {
+            while (flag == 0 && array[i])
+            {
+                temp1 = ft_strjoin(array[i], "/");			
+                temp2 = ft_strjoin(temp1, av[k + 2]);
+                // free(temp); // remember to free if we haven't found the right thing.
+                if (access(temp2, F_OK) == 0)
+                    flag = 1;
+                else
+                {
+                    // free(str2);
+                    i++;				
+                }
+            }
+            // if (flag == 0)
+            // {
+            //     perror("couldn't find command");
+            //     // free(str2);
+            //     exit(EXIT_FAILURE);
+            // }
+            paths[k] = ft_memcpy(paths[k], temp2, ft_strlen(temp2));
+            free(temp1);
+            free(temp2);
+            i = 0;
+            k++;
+            
+        }
+        ft_array_free(array);
+        paths[k] = NULL;
+        return(paths);    
+}
 
-		}
-		free(temp);
-		ft_array_free(array);
-		if (flag == 0)
-		{
-			perror("Command not found");
-			return (0);
-		}
-		char *arr[] = {str2, av[1], NULL};
-		if (execve(str2, arr, envp) == -1)
-		{
-			exit(EXIT_FAILURE);
-		}
-		return (0);
-	}
-	else 
-	{
-		waitpid(id, NULL, 0);
-	}
-
-	return 0;
+int main(int ac, char **av, char **envp)
+{
+    if (ac < 5)
+    {
+        perror("Not enough arguments");
+        exit(EXIT_FAILURE);
+    }
+    int fd[ac - 2][2];
+    // int pid[ac - 2];
+    int i = 0;
+    while (i < ac - 2)
+    {
+        if (pipe(fd[i]) < 0)
+        {
+            perror("problem with pipes");
+            exit(EXIT_FAILURE);
+        }
+        i++;
+    }
+    // int k = 0;
+    char **paths = get_paths(ac, av, envp);
+    // char **flags = get_flags(ac, av, envp);
+    char **temp = paths;
+    while (temp)
+    {
+        ft_printf("%s\n", *temp);
+        temp++;
+    }
+    // while (k < ac - 2)
+    // {
+    //     pid[k] = fork();
+    //     if (pid[k] < 0)
+    //     {
+    //         perror("Fork failed");
+    //         exit(EXIT_FAILURE);
+    //     }            
+    //     if (pid[k] == 0)
+    //     {
+    //         close_pipes();
+    //         read();
+    //         dup2();
+    //         execute();
+    //         write();
+    //         close(); // close read end
+    //         close(); // close write end
+    //         return (0);
+    //     }
+    //     else
+    //     {
+    //         close_pipes2();
+    //         open();
+    //         write();
+    //         dup2();
+    //         read();
+    //         close(); // close the read end
+    //         close(); // close the write end
+    //         wait_for_children();
+    //         return (0);
+    //     }
+    // }
+    return (0);
 }

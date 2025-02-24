@@ -6,13 +6,14 @@
 #    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 11:38:45 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/02/21 13:44:38 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/02/24 16:37:08 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = cc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = 
+# -Wall -Wextra -Werror
 SOURCES = main.c \
 			error_checking.c
 			

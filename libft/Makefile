@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+         #
+#    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 12:03:28 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/02/22 21:17:08 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/02/24 15:11:56 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ AR = ar rcs
 HEADERS = libft.h
 FLAGS = -Wall -Wextra -Werror
 SOURCES = ft_array_free.c \
+			ft_array_len.c \
 			ft_memcpy.c \
 			ft_printf.c \
 			ft_putchar_fd.c \
@@ -28,6 +29,7 @@ SOURCES = ft_array_free.c \
 			ft_putstr_fd.c \
 			ft_putuns_fd.c \
 			ft_split.c \
+			ft_strcpy.c \
 			ft_strjoin.c \
 			ft_strlen.c \
 			ft_strncmp.c \

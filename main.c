@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:30:47 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/22 18:01:57 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/02/22 21:36:05 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(int ac, char **av, char **envp)
 		perror("The pipe failed \n");
 		exit(EXIT_FAILURE);
 	}
-	if (ac < 1)
+	if (ac < 2)
 	{
 		perror("Not enough parameters \n");
 		exit(EXIT_FAILURE);
@@ -45,36 +45,34 @@ int main(int ac, char **av, char **envp)
 		char **array = ft_split(*ptr, ':'); // remember to free at some point
 		int flag = 0;
 		int i = 0;
-		char *str1;
+		char *temp;
 		char *str2;
 		while (flag == 0 && array[i])
 		{
-			str1 = ft_strjoin(array[i], "/");			
-			str2 = ft_strjoin(str1, av[2]); // remember to free if we haven't found the right thing.
+			temp = ft_strjoin(array[i], "/");			
+			str2 = ft_strjoin(temp, av[2]); // remember to free if we haven't found the right thing.
 			if (access(str2, F_OK) == 0)
 				flag = 1;
 			else
-				i++;
+			{
+				free(temp);
+				free(str2);
+				i++;				
+			}
+
 		}
-		if (flag == 1)
-			ft_printf("%s\n", str2);
-		else 
-			ft_printf("Not Found");
-		// while (*array)
-		// {
-		// 	ft_printf("%s\n", *array);
-		// 	array++;
-		// }
-		// Use another loop to strjoin av[2] to each string from ft_split
-		// Then use access() to check which link works, and then use that one.
-		// remember that ft_split and ft_strjoin use malloc so free them. 
-		// store the right path in str.
-		// char *arr[] = {str, av[1], "-w", NULL}; // the correct index for envp is 24.
-		// if (execve(str, arr, envp) < 0)
-		// {
-		// 	perror("The execution failed \n");
-		// 	exit(EXIT_FAILURE);		
-		// }
+		free(temp);
+		ft_array_free(array);
+		if (flag == 0)
+		{
+			perror("Command not found");
+			return (0);
+		}
+		char *arr[] = {str2, av[1], NULL};
+		if (execve(str2, arr, envp) == -1)
+		{
+			exit(EXIT_FAILURE);
+		}
 		return (0);
 	}
 	else 

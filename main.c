@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 10:48:20 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/25 16:13:14 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:08:47 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,17 @@ char **get_flags(int ac, char **av)
 	return (flags);
 }
 
+void	close_fd(int fd[][2], int len)
+{
+	int p = 0;
+	while (p < len)
+	{
+		close(fd[p][0]);
+		close(fd[p][1]);
+		p++;
+	}
+	// return ;	
+}
 int main(int ac, char **av, char **envp)
 {
 	if (!envp)
@@ -88,8 +99,15 @@ int main(int ac, char **av, char **envp)
 		perror("Not enough arguments");
 		exit(EXIT_FAILURE);
 	}
-	int fd[ac - 3][2]; // for pipes
-	int pid[ac - 2]; // for children
+	int fd[ac - 3][2]; // this has to have a malloc
+	int pid[ac - 2]; // this has to have a malloc
+	int n = 0;
+	while (n < ac - 3)
+	{
+		if(pipe(fd[n]) < 0)
+			perror("pipe doesn't work \n");
+		n++;
+	}
 	int i = 0;
 	int k = 0;
 	char **paths = get_paths(ac, av, envp);
@@ -105,10 +123,10 @@ int main(int ac, char **av, char **envp)
 			{
 				if (access(av[1], R_OK) < 0)
 					perror("couldn't access \n");		
-				int flag = open(av[1], O_RDONLY);
-				if (flag < 0)
+				int flag1 = open(av[1], O_RDONLY);
+				if (flag1 < 0)
 					perror("There's an opening the file \n");
-				if (dup2(flag, STDIN_FILENO) < 0)
+				if (dup2(flag1, STDIN_FILENO) < 0)
 					perror("Can't redirect \n");
 				if (dup2(fd[k][1], STDOUT_FILENO) < 0)
 					perror("Can't redirect \n");
@@ -129,7 +147,7 @@ int main(int ac, char **av, char **envp)
 					perror("Can't redirect \n");
 			}
 			char *arr[] = {paths[k], flags[k], NULL}; // this line is wrong as you can have many flags. Fill in with loop
-			// close all fds
+			close_fd(fd, ac - 3);
 			if (execve(paths[k], arr, envp) < 0)
 			{
 				// free resources
@@ -138,8 +156,9 @@ int main(int ac, char **av, char **envp)
 		}
 		k++; 
 	}
-	// close all fds
-	waitpid(pid[k - 1], NULL, 0); // this line is also wrong. I need to output the error of the last command.
+	int x;
+	close_fd(fd, ac - 3);
+	waitpid(pid[k - 1], &x, 0); // this line is also wrong. I need to output the error of the last command.
 }
 // experiment 2
 // int main(int ac, char **av, char **envp)

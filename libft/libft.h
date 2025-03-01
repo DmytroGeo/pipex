@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:03:25 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/24 15:11:36 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/02/28 15:08:53 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,14 @@
 # include <limits.h>
 # include <stdio.h>
 # include <stdarg.h>
+
+typedef struct s_list {
+	int	index;
+	int *fd[2];
+	char *path;
+	char **flags;
+	struct s_list *next;
+} t_list;
 
 void	ft_putchar_fd(char c, int fd, int *count);
 void	ft_putchex_fd(unsigned int n, int fd, int *count);
@@ -37,6 +45,10 @@ char	*ft_strcpy(char *dst, const char *src);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_array_free(char **array);
-int	ft_array_len(char **array);
+int		ft_array_len(char **array);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstclear(t_list **lst);
+t_list	*ft_lstnew(char *path, char **flags);
+t_list	*ft_find_node(int i, t_list **head);
 
 #endif

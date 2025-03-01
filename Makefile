@@ -3,22 +3,25 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
+#    By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 11:38:45 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/02/24 16:37:08 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/02/27 21:58:17 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = cc
-FLAGS = 
-# -Wall -Wextra -Werror
-SOURCES = main.c \
-			error_checking.c
+FLAGS = -Wall -Wextra -Werror
+LIBFT = libft/libft.a
+SOURCES = src/errors.c \
+			src/flags_and_paths.c \
+			src/free_all.c \
+			src/free_all.c \
+			src/initialise.c \
+			main.c
 			
 OBJECTS = $(SOURCES:.c=.o)
-LIBFT = libft/libft.a
 
 %.o: %.c
 		$(CC) $(FLAGS) -c $< -o $@
@@ -40,8 +43,5 @@ fclean: clean
 		rm -f $(NAME)
 
 re: fclean all
-
-# run: $(NAME)
-# 	./$(NAME)
 
 .PHONY: all clean fclean re run

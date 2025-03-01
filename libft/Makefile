@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
+#    By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 12:03:28 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/02/24 15:11:56 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/02/27 22:20:25 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ HEADERS = libft.h
 FLAGS = -Wall -Wextra -Werror
 SOURCES = ft_array_free.c \
 			ft_array_len.c \
+			ft_lstnew.c \
+			ft_lstadd_front.c \
 			ft_memcpy.c \
 			ft_printf.c \
 			ft_putchar_fd.c \

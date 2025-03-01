@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   proc_call.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 13:10:36 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/27 17:33:15 by dgeorgiy         ###   ########.fr       */
+/*   Created: 2025/02/27 18:44:18 by dgeorgiy          #+#    #+#             */
+/*   Updated: 2025/02/28 11:44:35 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../pipex.h"
 
-char	*ft_strcpy(char *dst, const char *src)
+int	proc_call(int i, char c)
 {
-	size_t	i;
-	size_t	len;
-	
-	i = 0;
-	len = ft_strlen(src);
-	while (i < len)
+	if (c == 'r' && i < 5)
 	{
-		dst[i] = src[i];
-		i++;
+		ft_putstr_fd("Too few arguments \n", 2, 0);
+		exit(EXIT_FAILURE);
 	}
-	dst[i] = '\0';
-	return (dst);
+	if (c == 'f' && i < 0)
+		perror("Couldn't fork \n");
+	else if (c == 'o' && i < 0)
+		perror("Can't redirect output \n");
+	else if (c == 'i' && i < 0)
+		perror("Can't redirect input \n");
+	else if (c == 'a' && i < 0)
+		perror("Couldn't access file \n");
+	return (0);
 }

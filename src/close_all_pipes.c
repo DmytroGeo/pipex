@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_checking.c                                   :+:      :+:    :+:   */
+/*   close_all_pipes.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 12:30:41 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/21 13:45:26 by dgeorgiy         ###   ########.fr       */
+/*   Created: 2025/02/27 22:39:29 by dgeorgiy          #+#    #+#             */
+/*   Updated: 2025/02/27 22:52:35 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
-// void error_checking(int argc, char **argv)
-// {
+void	close_all_pipes(int fd[][2], int len)
+{
+	int	i;
 
-// 	// if (argc < 5)
-// 	// {
-// 	// 	perror("Not enough arguments");
-// 	// 	exit(EXIT_FAILURE);   
-// 	// }
-// 	return (0);
-// }
+	i = 0;
+	while (i < len)
+	{
+		close(fd[i][0]);
+		close(fd[i][1]);
+		i++;
+	}
+	return ;
+}

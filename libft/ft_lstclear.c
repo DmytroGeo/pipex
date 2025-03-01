@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/24 13:10:36 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/27 17:33:15 by dgeorgiy         ###   ########.fr       */
+/*   Created: 2024/07/08 16:18:22 by dgeorgiy          #+#    #+#             */
+/*   Updated: 2025/02/28 15:09:17 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strcpy(char *dst, const char *src)
+void	ft_lstclear(t_list **lst)
 {
-	size_t	i;
-	size_t	len;
-	
-	i = 0;
-	len = ft_strlen(src);
-	while (i < len)
+	t_list	*current;
+
+	current = *lst;
+	if (current == NULL)
+		return ;
+	while (current != NULL)
 	{
-		dst[i] = src[i];
-		i++;
+		*lst = current->next;
+		free(current->path);
+		// We need a line to free fd[i][2];
+		ft_array_free(current->flags);
+		free(current);
+		current = *lst;
 	}
-	dst[i] = '\0';
-	return (dst);
 }
+

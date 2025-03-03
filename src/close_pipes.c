@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   close_pipes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 17:26:13 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/03 14:44:57 by dgeorgiy         ###   ########.fr       */
+/*   Created: 2025/02/27 22:39:29 by dgeorgiy          #+#    #+#             */
+/*   Updated: 2025/03/03 14:29:29 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../pipex.h"
 
-t_list	*ft_lstnew(char *pa, char **fl)
+void	close_pipes(int (*fd)[2], int len)
 {
-	t_list	*new_node;
+	int	i;
 
-	new_node = malloc(sizeof(t_list));
-	if (new_node == NULL)
-		return (NULL);
-	new_node->path = pa;
-	new_node->flags = fl;
-	return (new_node);
+	i = 0;
+	while (i < len)
+	{
+		if (fd[i][0] != -1)
+		{
+			close(fd[i][0]);
+			fd[i][0] = -1;
+		}
+		if (fd[i][1] != -1)
+		{
+			close(fd[i][1]);
+			fd[i][1] = -1;
+		}
+		i++;
+	}
+	return ;
 }

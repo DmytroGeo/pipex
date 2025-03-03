@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_all_pipes.c                                  :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 22:39:29 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/27 22:52:35 by dgeorgiy         ###   ########.fr       */
+/*   Created: 2025/03/03 12:51:13 by dgeorgiy          #+#    #+#             */
+/*   Updated: 2025/03/03 14:39:17 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-void	close_all_pipes(int fd[][2], int len)
+int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	int		count;
+	t_list	*current;
 
-	i = 0;
-	while (i < len)
+	count = 0;
+	current = lst;
+	while (current != NULL)
 	{
-		close(fd[i][0]);
-		close(fd[i][1]);
-		i++;
+		count++;
+		current = current->next;
 	}
-	return ;
+	return (count);
 }

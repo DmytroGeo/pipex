@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 13:10:36 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/27 17:33:15 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/03 14:39:51 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strcpy(char *dst, const char *src)
 {
 	size_t	i;
 	size_t	len;
-	
+
 	i = 0;
 	len = ft_strlen(src);
 	while (i < len)

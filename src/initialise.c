@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:41:49 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/02/28 15:21:03 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/03 19:33:45 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,48 +21,45 @@ void	init_list(int ac, char **av, char **envp, t_list **head)
 
 	i = ac - 1;
 	tmp = NULL;
-	while (--i > 1)
+	while (i > 2)
 	{
+		i--;
 		array = ft_split(av[i], ' ');
-		path = get_path(ac, array[0], envp);
+		path = get_path(array[0], envp);
 		if (!path)
 			perror("Path not found\n");
 		tmp = ft_lstnew(path, get_flags(&array[1]));
 		tmp->index = i - 2;
+		tmp->ac = ac;
+		tmp->envp = envp;
+		tmp->av = av;
 		ft_lstadd_front(head, tmp);
 		ft_array_free(array);
 	}
 	array = NULL;
 }
 
-void	init_fd(int ac, int fd[][2], t_list **head)
+void	init_setup(int *pid, int (*fd)[2], t_list **head)
 {
-	// need to look into this.
-}
-
-void	init_pid(int ac, int *pid)
-{
-	pid = malloc((ac - 3) * sizeof(int));
-	return ; 
-}
-
-void	init_pipes(int ac, int fd[][2])
-{
+	int	ac;
 	int	i;
 
 	i = 0;
+	ac = (*head)->ac;
+	pid = malloc((ac - 3) * sizeof(int));
+	if (!pid)
+		return ;
+	fd = malloc((ac - 3) * sizeof(int) * 2);
+	if (!pid)
+		return ;
 	while (i < ac - 3)
 	{
 		if (pipe(fd[i]) < 0)
+		{
 			perror("Piping didn't work \n");
+			close_pipes(fd, i + 1);
+			return ;
+		}
 		i++;
 	}
-	return ;
-}
-
-// Looks into how init_pid works with init_pipes:
-
-void	init_setup(int ac, int *pid, int fd[][2], t_list **head)
-{
-	return (init_pid(ac, pid), init_fd(ac, fd, head), init_pipes(ac, fd));
 }

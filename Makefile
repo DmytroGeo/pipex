@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+         #
+#    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 11:38:45 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/02/27 21:58:17 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/03/03 19:49:39 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,13 @@ NAME = pipex
 CC = cc
 FLAGS = -Wall -Wextra -Werror
 LIBFT = libft/libft.a
-SOURCES = src/errors.c \
+SOURCES = src/close_pipes.c \
 			src/flags_and_paths.c \
-			src/free_all.c \
-			src/free_all.c \
+			src/dup_process.c \
+			src/execute.c \
 			src/initialise.c \
+			src/proc_call.c \
+			src/process_loop.c \
 			main.c
 			
 OBJECTS = $(SOURCES:.c=.o)

@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   process_loop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 17:26:13 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/03 14:44:57 by dgeorgiy         ###   ########.fr       */
+/*   Created: 2025/03/03 13:12:37 by dgeorgiy          #+#    #+#             */
+/*   Updated: 2025/03/03 19:38:27 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../pipex.h"
 
-t_list	*ft_lstnew(char *pa, char **fl)
+void	process_loop(t_list **head, int *pid, int (*fd)[2])
 {
-	t_list	*new_node;
+	int		i;
 
-	new_node = malloc(sizeof(t_list));
-	if (new_node == NULL)
-		return (NULL);
-	new_node->path = pa;
-	new_node->flags = fl;
-	return (new_node);
+	i = 0;
+	while (i < (*head)->ac - 3)
+	{
+		pid[i] = fork();
+		proc_call(pid[i], 'f');
+		if (pid[i] == 0)
+		{
+			dup_process(i, fd, (*head)->av, (*head)->ac);
+			close_pipes(fd, (*head)->ac - 3);
+			execute(i, fd, pid, head);
+			exit(EXIT_FAILURE); // if execute didn't work.
+		}
+		i++;
+	}
 }

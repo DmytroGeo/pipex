@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:54:09 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/03 19:37:41 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:26:57 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@
 # include <errno.h>
 # include <fcntl.h>
 
-void	close_pipes(int (*fd)[2], int len);
+void	close_pipes(int **fd, int len);
 int		proc_call(int i, char c);
 char	*get_path(char *str, char **envp);
 char	**get_flags(char **arr);
 void	init_list(int ac, char **av, char **envp, t_list **head);
-void	init_setup(int *pid, int (*fd)[2], t_list **head);
-void	dup_process(int i, int (*fd)[2], char **av, int ac);
+void	init_setup(int **pid, int ***fd, int ac);
 int		proc_call(int i, char c);
-void	process_loop(t_list **head, int *pid, int (*fd)[2]);
-void	execute(int i, int (*fd)[2], int *pid, t_list **head);
+void	process_loop(t_list **head, int *pid, int **fd);
+void	execute(int i, int **fd, int *pid, t_list **head);
+int		wait_for_processes(int *pid, int ac);
+void	dup_process(int i, int **fd, t_list **head);
 
 #endif

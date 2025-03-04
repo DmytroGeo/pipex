@@ -6,38 +6,40 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:30:41 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/03 19:33:27 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/04 11:27:34 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-char	**find_path(char **envp)
+char	*find_path_variable(char **envp)
 {
 	char	**ptr;
+	char	*path_variable;
 
 	ptr = envp;
 	while (!(ft_strnstr(*ptr, "PATH", ft_strlen(*ptr)) && **ptr == 'P'))
 		ptr++;
 	if (ptr == NULL)
 		return (NULL);
-	*ptr += 5;
-	return (ptr);
+	path_variable = *ptr;
+	path_variable += 5;
+	return (path_variable);
 }
 
 char	*get_path(char *str, char **envp)
 {
-	char	**ptr;
+	char	*path_variable;
 	char	*temp1;
 	char	*temp2;
 	char	**arr;
 	int		i;
 
 	i = -1;
-	ptr = find_path(envp);
-	if (!ptr)
+	path_variable = find_path_variable(envp);
+	if (!path_variable)
 		return (NULL);
-	arr = ft_split(*ptr, ':');
+	arr = ft_split(path_variable, ':');
 	while (arr[++i])
 	{
 		temp1 = ft_strjoin(arr[i], "/");

@@ -6,13 +6,13 @@
 #    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 11:38:45 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/03/03 19:49:39 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/03/04 10:51:29 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 CC = cc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3
 LIBFT = libft/libft.a
 SOURCES = src/close_pipes.c \
 			src/flags_and_paths.c \
@@ -21,6 +21,7 @@ SOURCES = src/close_pipes.c \
 			src/initialise.c \
 			src/proc_call.c \
 			src/process_loop.c \
+			src/wait_for_processes.c \
 			main.c
 			
 OBJECTS = $(SOURCES:.c=.o)

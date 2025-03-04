@@ -6,14 +6,14 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 16:12:53 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/03 14:44:37 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/03 20:07:58 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+void	ft_lstadd_front(t_list **head, t_list *new)
 {
-	new->next = *lst;
-	*lst = new;
+	new->next = *head;
+	*head = new;
 }

@@ -6,7 +6,7 @@
 #    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 12:03:28 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/03/03 19:50:44 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/03/04 14:49:35 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ FLAGS = -Wall -Wextra -Werror
 SOURCES = ft_array_free.c \
 			ft_array_len.c \
 			ft_find_node.c \
+			ft_int_array_free.c \
 			ft_lstadd_front.c \
 			ft_lstclear.c \
 			ft_lstnew.c \

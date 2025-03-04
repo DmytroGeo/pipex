@@ -6,7 +6,7 @@
 			"request": "launch",
 			"name": "pipex debug",
 			"program": "${workspaceFolder}/pipex",
-			"args": [ "infile", "cat", "wc", "outfile"
+			"args": [ "infile.txt", "wc -b", "wc -w", "wc -l", "outfile.txt"
 			],
 		  }
 	]  

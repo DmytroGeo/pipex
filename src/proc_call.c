@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:44:18 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/03 19:51:48 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/04 09:36:39 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	proc_call(int i, char c)
 {
-	if (c == 'r' && i < 5)
+	if (c == 'r' && i < 4)
 	{
 		ft_printf("Too few arguments \n");
 		// Look into the above line, needs to be redirected to std_err

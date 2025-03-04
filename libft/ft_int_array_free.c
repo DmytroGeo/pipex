@@ -1,49 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close_pipes.c                                      :+:      :+:    :+:   */
+/*   ft_int_array_free.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 22:39:29 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/04 13:38:39 by dgeorgiy         ###   ########.fr       */
+/*   Created: 2025/03/04 14:45:54 by dgeorgiy          #+#    #+#             */
+/*   Updated: 2025/03/04 15:03:26 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-// void	close_pipes(int (*fd)[2], int len)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < len)
-// 	{
-// 		if (fd[i][0] != -1)
-// 		{
-// 			close(fd[i][0]);
-// 			fd[i][0] = -1;
-// 		}
-// 		if (fd[i][1] != -1)
-// 		{
-// 			close(fd[i][1]);
-// 			fd[i][1] = -1;
-// 		}
-// 		i++;
-// 	}
-// 	return ;
-// }
-
-void	close_pipes(int **fd, int len)
+void	ft_int_array_free(int **fd, int len)
 {
 	int	i;
 
 	i = 0;
+	if (!fd)
+		return ;
 	while (i < len)
 	{
-		close(fd[i][0]);
-		close(fd[i][1]);
+		free(fd[i]);
 		i++;
 	}
-	return ;
+	free(fd);   
 }

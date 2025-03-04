@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:54:09 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/04 17:26:57 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:45:42 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int		proc_call(int i, char c);
 void	process_loop(t_list **head, int *pid, int **fd);
 void	execute(int i, int **fd, int *pid, t_list **head);
 int		wait_for_processes(int *pid, int ac);
-void	dup_process(int i, int **fd, t_list **head);
+void	dup_read_side(int i, int **fd, int *pid, t_list **head);
+void	dup_write_side(int i, int **fd, int *pid, t_list **head);
+void	free_and_exit(int *pid, int **fd, t_list **head);
 
 #endif

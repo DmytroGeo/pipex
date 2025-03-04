@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:41:49 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/04 16:15:58 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:02:12 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_list(int ac, char **av, char **envp, t_list **head)
 		array = ft_split(av[i], ' ');
 		path = get_path(array[0], envp);
 		if (!path)
-			perror("Path not found\n");
+			perror(NULL);
 		temp = ft_lstnew(path, get_flags(&array[1]));
 		temp->index = i - 2;
 		temp->ac = ac;
@@ -55,7 +55,7 @@ void	init_setup(int **pid, int ***fd, int ac)
 		(*fd)[i] = malloc(2 * sizeof(int));
 		if (pipe((*fd)[i]) < 0)
 		{
-			perror("Piping didn't work \n");
+			perror(NULL);
 			close_pipes(*fd, i + 1);
 			return ;
 		}

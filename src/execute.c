@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 11:48:53 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/04 14:50:32 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:17:14 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	execute(int i, int **fd, int *pid, t_list **head)
 	while (++n <= num_of_flags)
 		array[n] = (node->flags)[n - 1];
 	array[n] = NULL;
-	if (execve(node->path, array, envp) < 0)
+	if (execve(node->path, array, envp) < 0) // look into what needs to happen here
 	{
 		free(pid);
 		ft_int_array_free(fd, (*head)->ac - 4);

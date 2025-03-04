@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_loop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:12:37 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/04 17:25:37 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/04 18:30:32 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,9 @@ void	process_loop(t_list **head, int *pid, int **fd)
 {
 	int		i;
 	int		ac;
-	char	**av;
 
 	i = 0;
 	ac = (*head)->ac;
-	av = (*head)->av;
 	while (i < ac - 3)
 	{
 		pid[i] = fork();

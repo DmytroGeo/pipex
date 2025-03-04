@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:44:18 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/04 19:03:45 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/04 19:59:49 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	proc_call(int i, char c)
 		perror(NULL);
 		// Look into this. If fork doesn't work need to kill program.		
 	}
-
 	else if ((c == 'o' || c == 'i' || c == 'a') && i < 0)
 		perror(NULL);
 	return (0);

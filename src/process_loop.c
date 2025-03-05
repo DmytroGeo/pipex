@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 13:12:37 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/04 19:28:07 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/05 09:57:51 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,3 @@ void	process_loop(t_list **head, int *pid, int **fd)
 		i++;
 	}
 }
-
-

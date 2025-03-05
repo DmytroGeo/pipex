@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:41:49 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/04 19:59:34 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:14:39 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_list(int ac, char **av, char **envp, t_list **head)
 	t_list	*temp;
 	char	**array;
 	char	*path;
+	char	**flags;
 
 	i = ac - 1;
 	temp = NULL;
@@ -26,9 +27,10 @@ void	init_list(int ac, char **av, char **envp, t_list **head)
 		i--;
 		array = ft_split(av[i], ' ');
 		path = get_path(array[0], envp);
+		flags = get_flags(&array[1]);
 		if (!path)
 			perror(NULL);
-		temp = ft_lstnew(path, get_flags(&array[1]));
+		temp = ft_lstnew(path, flags);
 		temp->index = i - 2;
 		temp->ac = ac;
 		temp->envp = envp;

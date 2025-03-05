@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:30:41 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/04 11:27:34 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:56:44 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*find_path_variable(char **envp)
 	if (ptr == NULL)
 		return (NULL);
 	path_variable = *ptr;
-	path_variable += 5;
+	path_variable += ft_strlen("PATH=");
 	return (path_variable);
 }
 
@@ -64,7 +64,7 @@ char	**get_flags(char **arr)
 
 	i = 0;
 	len = ft_array_len(arr);
-	if (len < 0)
+	if (len == 0)
 		return (NULL);
 	flags = malloc((len + 1) * sizeof(char *));
 	if (!flags)

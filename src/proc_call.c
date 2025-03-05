@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:44:18 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/04 19:59:49 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:20:55 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 int	proc_call(int i, char c)
 {
+	int	p;
+	p = 2;
 	if (c == 'r' && i < 4)
 	{
-		dup2(STDOUT_FILENO, STDERR_FILENO);
-		ft_printf("Too few arguments \n");
+		ft_putstr_fd("Too few arguments\n", p, &p);
 		exit(EXIT_FAILURE);
 	}
 	if (c == 'f' && i < 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:41:49 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/05 14:14:39 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/06 08:15:33 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,15 @@ void	init_setup(int **pid, int ***fd, int ac)
 
 	i = 0;
 	*pid = malloc((ac - 3) * sizeof(int));
-	if (!pid)
+	if (!*pid)
 		return ;
 	*fd = malloc((ac - 4) * sizeof(int *));
-	if (!fd)
+	if (!*fd)
 		return ;
 	while (i < ac - 4)
 	{
 		(*fd)[i] = malloc(2 * sizeof(int));
+		// see chatGPT
 		if (pipe((*fd)[i]) < 0)
 		{
 			perror(NULL);

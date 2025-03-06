@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   proc_call.c                                        :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 18:44:18 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/06 11:50:24 by dgeorgiy         ###   ########.fr       */
+/*   Created: 2025/03/06 10:22:22 by dgeorgiy          #+#    #+#             */
+/*   Updated: 2025/03/06 10:42:48 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-int	proc_call(int i, char c)
+char	**ft_free(char **ptr, size_t k)
 {
-	int	p;
+	size_t	j;
 
-	p = 2;
-	if (c == 'r' && i < 4)
+	j = 0;
+	while (j < k)
 	{
-		ft_putstr_fd("Too few arguments\n", p, &p);
-		exit(EXIT_FAILURE);
+		free(ptr[j]);
+		j++;
 	}
-	else if ((c == 'o' || c == 'i') && i < 0)
-		perror(NULL);
-	else if (c == 'a' && i < 0)
-		perror("Can't access file");
-	return (0);
+	free(ptr);
+	return (NULL);
 }

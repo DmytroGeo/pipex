@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 15:59:24 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/05 15:56:11 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/06 10:22:19 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,6 @@ char	*ft_malloccpy(size_t n, size_t len, char const *s)
 	ft_memcpy(ptr, &s[n - len], len);
 	ptr[len] = '\0';
 	return (ptr);
-}
-
-char	**ft_free(char **ptr, size_t k)
-{
-	size_t	j;
-
-	j = 0;
-	while (j < k)
-	{
-		free(ptr[j]);
-		j++;
-	}
-	free(ptr);
-	return (NULL);
 }
 
 char	**ft_arrayfill(char **array, char const *s, char c)

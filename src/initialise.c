@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialise.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:41:49 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/06 08:15:33 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/06 11:42:37 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_list(int ac, char **av, char **envp, t_list **head)
 		path = get_path(array[0], envp);
 		flags = get_flags(&array[1]);
 		if (!path)
-			perror(NULL);
+			ft_perror(array[0], 'p');
 		temp = ft_lstnew(path, flags);
 		temp->index = i - 2;
 		temp->ac = ac;
@@ -41,27 +41,31 @@ void	init_list(int ac, char **av, char **envp, t_list **head)
 	array = NULL;
 }
 
-void	init_setup(int **pid, int ***fd, int ac)
+void	init_setup(int **pid, int ***fd, int ac, t_list **head)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	*pid = malloc((ac - 3) * sizeof(int));
 	if (!*pid)
 		return ;
 	*fd = malloc((ac - 4) * sizeof(int *));
 	if (!*fd)
 		return ;
-	while (i < ac - 4)
+	while (++i < ac - 4)
 	{
 		(*fd)[i] = malloc(2 * sizeof(int));
-		// see chatGPT
+		if (!(*fd)[i])
+		{
+			perror("fd malloc failed");
+			(close_pipes(*fd, i), free_and_exit(*pid, *fd, head));
+			exit (EXIT_FAILURE);
+		}
 		if (pipe((*fd)[i]) < 0)
 		{
 			perror(NULL);
-			close_pipes(*fd, i + 1);
-			return ;
+			(close_pipes(*fd, i + 1), free_and_exit(*pid, *fd, head));
+			exit (EXIT_FAILURE);
 		}
-		i++;
 	}
 }

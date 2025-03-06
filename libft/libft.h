@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:03:25 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/04 14:49:12 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/06 11:24:38 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ t_list	*ft_lstnew(char *path, char **flags);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_find_node(int i, t_list **head);
 void	ft_int_array_free(int **fd, int len);
+char	**ft_free(char **ptr, size_t k);
+void	ft_perror(char *str, char c);
 
 #endif

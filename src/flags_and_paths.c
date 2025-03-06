@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   flags_and_paths.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:30:41 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/06 08:12:40 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/06 10:41:32 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ char	*find_path_variable(char **envp)
 	while (!(ft_strnstr(*ptr, "PATH", ft_strlen(*ptr)) && **ptr == 'P'))
 		ptr++;
 	if (ptr == NULL)
+	{
+		perror("PATH variable not found");
 		return (NULL);
+	}
 	path_variable = *ptr;
 	path_variable += ft_strlen("PATH=");
 	return (path_variable);
@@ -72,8 +75,8 @@ char	**get_flags(char **arr)
 	while (i < len)
 	{
 		flags[i] = malloc(ft_strlen(arr[i]) + 1);
-		// if (!flags[i])
-		// free and return null.
+		if (!flags[i])
+			return (ft_free(flags, i));
 		flags[i] = ft_strcpy(flags[i], arr[i]);
 		i++;
 	}

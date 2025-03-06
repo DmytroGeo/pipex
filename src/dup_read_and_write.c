@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dup_read_and_write.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dgeorgiy <dgeorgiy@student.42london.com    +#+  +:+       +#+        */
+/*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 23:42:24 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/06 08:02:08 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:02:16 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@ void	dup_read_side(int i, int **fd, int *pid, t_list **head)
 	av = (*head)->av;
 	if (i == 0)
 	{
-		proc_call(access(av[1], R_OK), 'a');
+		if (access(av[1], F_OK) == 0)
+			proc_call(access(av[1], R_OK), 'a');
 		flag1 = open(av[1], O_RDONLY);
 		if (flag1 < 0)
 		{
-			perror(NULL);
-			free(pid);
-			ft_int_array_free(fd, ac - 4);
-			ft_lstclear(head);
+			ft_perror(av[1], 'o');
 			free_and_exit(pid, fd, head);
 			exit(EXIT_FAILURE);
 		}

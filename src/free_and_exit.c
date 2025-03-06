@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:29:36 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/05 12:49:24 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:42:00 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	free_and_exit(int *pid, int **fd, t_list **head)
 		return ;
 	ac = (*head)->ac;
 	free(pid);
-	ft_int_array_free(fd, ac - 4);
+	ft_intarr_free(fd, ac - 4);
 	ft_lstclear(head);
 	return ;
 }

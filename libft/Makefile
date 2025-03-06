@@ -6,7 +6,7 @@
 #    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 12:03:28 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/03/06 11:09:58 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/03/06 12:41:45 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SOURCES = ft_array_free.c \
 			ft_array_len.c \
 			ft_find_node.c \
 			ft_free.c \
-			ft_int_array_free.c \
+			ft_intarr_free.c \
 			ft_lstadd_front.c \
 			ft_lstclear.c \
 			ft_lstnew.c \
@@ -46,7 +46,7 @@ SOURCES = ft_array_free.c \
 OBJECTS = $(SOURCES:.c=.o)
 
 %.o : %.c $(HEADERS)
-		$(CC) $(FLAGS) -c $< -o $@
+		@$(CC) $(FLAGS) -c $< -o $@
 
 # You don’t need -o when using ar! That flag is used by cc to specify an output file, but ar works differently. 
 # The correct way to archive object files looks like this:
@@ -55,7 +55,7 @@ OBJECTS = $(SOURCES:.c=.o)
 # $(OBJECTS) are the input files (the compiled .o files).
 
 $(NAME): $(OBJECTS)
-		$(AR) $(NAME) $(OBJECTS)
+		@$(AR) $(NAME) $(OBJECTS)
 
 # I could instead write 'libft.a: $(OBJECTS)
 # 	$(AR) libft.a $(OBJECTS)' but using variables is better.
@@ -63,10 +63,10 @@ $(NAME): $(OBJECTS)
 all: $(NAME)
 
 clean: 
-		rm -f $(OBJECTS)
+		@rm -f $(OBJECTS)
 
 fclean:	clean
-		rm -f libft.a
+		@rm -f libft.a
 		
 re: fclean all
 

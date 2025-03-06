@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:41:49 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/06 11:42:37 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:40:13 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,13 @@ void	init_setup(int **pid, int ***fd, int ac, t_list **head)
 		if (!(*fd)[i])
 		{
 			perror("fd malloc failed");
-			(close_pipes(*fd, i), free_and_exit(*pid, *fd, head));
+			(free(*pid), ft_intarr_free(*fd, i), ft_lstclear(head));
 			exit (EXIT_FAILURE);
 		}
 		if (pipe((*fd)[i]) < 0)
 		{
-			perror(NULL);
-			(close_pipes(*fd, i + 1), free_and_exit(*pid, *fd, head));
+			(perror (NULL), free(*pid));
+			(close_fds(*fd, i + 1), ft_intarr_free(*fd, i), ft_lstclear(head));
 			exit (EXIT_FAILURE);
 		}
 	}

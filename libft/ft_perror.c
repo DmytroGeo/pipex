@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 11:09:15 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/06 11:26:14 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:16:31 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	ft_perror(char *str, char c)
 
 	p = 2;
 	if (c == 'o')
-		error_message = "zsh: no such file or directory: ";
+		error_message = "my zsh: no such file or directory: ";
 	else
-		error_message = "zsh: command not found: ";
+		error_message = "my zsh: command not found: ";
 	temp1 = ft_strjoin(error_message, str);
 	if (!temp1)
 		return ;

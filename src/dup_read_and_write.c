@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 23:42:24 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/06 12:02:16 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:28:03 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	dup_read_side(int i, int **fd, int *pid, t_list **head)
 		if (flag1 < 0)
 		{
 			ft_perror(av[1], 'o');
+			close_fds(fd, ac - 4);
 			free_and_exit(pid, fd, head);
 			exit(EXIT_FAILURE);
 		}
@@ -53,6 +54,7 @@ void	dup_write_side(int i, int **fd, int *pid, t_list **head)
 		if (flag2 < 0)
 		{
 			perror(NULL);
+			close_fds(fd, ac - 4);
 			free_and_exit(pid, fd, head);
 			exit(EXIT_FAILURE);
 		}

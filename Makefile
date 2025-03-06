@@ -6,7 +6,7 @@
 #    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 11:38:45 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/03/05 12:50:14 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/03/06 12:11:03 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,23 +28,23 @@ SOURCES = src/close_pipes.c \
 OBJECTS = $(SOURCES:.c=.o)
 
 %.o: %.c
-		$(CC) $(FLAGS) -c $< -o $@
+		@$(CC) $(FLAGS) -c $< -o $@
 
 all: $(NAME)
 
 $(LIBFT): 
-		$(MAKE) -C libft
+		@$(MAKE) -C libft
 
 $(NAME): $(LIBFT) $(OBJECTS)
-		$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(LIBFT)
+		@$(CC) $(FLAGS) -o $(NAME) $(OBJECTS) $(LIBFT)
 
 clean:
-		$(MAKE) -C libft clean
-		rm -f $(OBJECTS)
+		@$(MAKE) -C libft clean
+		@rm -f $(OBJECTS)
 
 fclean: clean
-		$(MAKE) -C libft fclean
-		rm -f $(NAME)
+		@$(MAKE) -C libft fclean
+		@rm -f $(NAME)
 
 re: fclean all
 

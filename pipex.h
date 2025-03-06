@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:54:09 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/06 11:35:46 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/06 12:24:17 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <errno.h>
 # include <fcntl.h>
 
-void	close_pipes(int **fd, int len);
+void	close_fds(int **fd, int len);
 int		proc_call(int i, char c);
 char	*get_path(char *str, char **envp);
 char	**get_flags(char **arr);

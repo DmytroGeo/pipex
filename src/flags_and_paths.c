@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 12:30:41 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/06 10:41:32 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:11:49 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,15 @@ char	*find_path_variable(char **envp)
 	char	*path_variable;
 
 	ptr = envp;
-	while (!(ft_strnstr(*ptr, "PATH", ft_strlen(*ptr)) && **ptr == 'P'))
-		ptr++;
-	if (ptr == NULL)
+	while (*ptr)
 	{
-		perror("PATH variable not found");
+		if ((ft_strnstr(*ptr, "PATH", ft_strlen(*ptr)) && **ptr == 'P'))
+			break ;
+		ptr++;
+	}
+	if (*ptr == NULL)
+	{
+		ft_perror("", 'p');
 		return (NULL);
 	}
 	path_variable = *ptr;

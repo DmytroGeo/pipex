@@ -6,7 +6,7 @@
 #    By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/12 12:03:28 by dgeorgiy          #+#    #+#              #
-#    Updated: 2025/03/06 12:41:45 by dgeorgiy         ###   ########.fr        #
+#    Updated: 2025/03/09 20:04:19 by dgeorgiy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SOURCES = ft_array_free.c \
 			ft_putuns_fd.c \
 			ft_split.c \
 			ft_strcpy.c \
+			ft_strdup.c \
 			ft_strjoin.c \
 			ft_strlen.c \
 			ft_strncmp.c \

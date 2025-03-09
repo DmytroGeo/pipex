@@ -6,7 +6,7 @@
 /*   By: dgeorgiy <dgeorgiy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:41:49 by dgeorgiy          #+#    #+#             */
-/*   Updated: 2025/03/06 12:40:13 by dgeorgiy         ###   ########.fr       */
+/*   Updated: 2025/03/09 20:08:40 by dgeorgiy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ void	init_list(int ac, char **av, char **envp, t_list **head)
 	{
 		i--;
 		array = ft_split(av[i], ' ');
-		path = get_path(array[0], envp);
-		flags = get_flags(&array[1]);
+		if (access(array[0], F_OK | X_OK) == 0)
+			path = ft_strdup(array[0]);
+		else
+			path = get_path(array[0], envp);
 		if (!path)
 			ft_perror(array[0], 'p');
-		temp = ft_lstnew(path, flags);
+		flags = get_flags(&array[1]);
+		temp = ft_lstnew(path, flags, ac, envp);
 		temp->index = i - 2;
-		temp->ac = ac;
-		temp->envp = envp;
 		temp->av = av;
 		ft_lstadd_front(head, temp);
 		ft_array_free(array);
 	}
-	array = NULL;
 }
 
 void	init_setup(int **pid, int ***fd, int ac, t_list **head)
